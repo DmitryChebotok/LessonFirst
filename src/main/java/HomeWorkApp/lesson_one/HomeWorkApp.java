@@ -1,4 +1,4 @@
-package HomeWorkApp;
+package HomeWorkApp.lesson_one;
 
 import java.sql.SQLOutput;
 
