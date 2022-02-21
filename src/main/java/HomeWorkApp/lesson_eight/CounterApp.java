@@ -9,6 +9,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class CounterApp extends JFrame {
+
     private int value;
 
     public CounterApp(int initialValue) {
@@ -18,7 +19,7 @@ public class CounterApp extends JFrame {
 
         Font font = new Font("Arial", Font.BOLD, 32);
 
-        JLabel counterValueView = new JLabel();
+        JTextField counterValueView = new JTextField();
         counterValueView.setFont(font);
         counterValueView.setHorizontalAlignment(SwingConstants.CENTER);
         add(counterValueView, BorderLayout.CENTER);
@@ -33,6 +34,27 @@ public class CounterApp extends JFrame {
         JButton incrementButton = new JButton(">");
         incrementButton.setFont(font);
         add(incrementButton, BorderLayout.EAST);
+
+        counterValueView.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+
+                value = Integer.valueOf(counterValueView.getText());
+            }
+
+        });
+
+        counterValueView.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                String symbol = "0123456789";
+                // не могу понять как сбросить символ
+                if (!symbol.contains(String.valueOf(e.getKeyChar()))) {
+                    e.setKeyChar(KeyEvent.CHAR_UNDEFINED);
+                }
+            }
+        });
 
         decrementButton.addActionListener(new ActionListener() {
             @Override
